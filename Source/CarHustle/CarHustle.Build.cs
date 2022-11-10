@@ -10,7 +10,10 @@ public class CarHustle : ModuleRules
 
         PrivateDependencyModuleNames.AddRange(new string[] { "VehicleSystemPlugin" });
 
-        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "ChaosVehicles", "HeadMountedDisplay", "PhysicsCore" });
+        PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "ChaosVehicles", "HeadMountedDisplay", "PhysicsCore","OnlineSubsystem",
+                    "OnlineSubsystemUtils",
+                    "Voice",
+                    "CoreOnline" });
 
 		PublicDefinitions.Add("HMD_MODULE_INCLUDED=1");
 	}
