@@ -7,7 +7,12 @@
 		{
 			"Name": "CarHustle",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine",
+				"OnlineSubsystemUtils",
+				"UMG"
+			]
 		}
 	],
 	"Plugins": [
