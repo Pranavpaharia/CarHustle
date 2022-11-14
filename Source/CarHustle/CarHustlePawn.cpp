@@ -24,10 +24,6 @@
 #endif
 
 // Needed for VR Headset
-#if HMD_MODULE_INCLUDED
-#include "IXRTrackingSystem.h"
-#include "HeadMountedDisplayFunctionLibrary.h"
-#endif // HMD_MODULE_INCLUDED
 
 const FName ACarHustlePawn::LookUpBinding("LookUp");
 const FName ACarHustlePawn::LookRightBinding("LookRight");
@@ -268,12 +264,7 @@ void ACarHustlePawn::Tick(float Delta)
 	SetupInCarHUD();
 
 	bool bHMDActive = false;
-#if HMD_MODULE_INCLUDED
-	if ((GEngine->XRSystem.IsValid() == true ) && ( (GEngine->XRSystem->IsHeadTrackingAllowed() == true) || (GEngine->IsStereoscopic3D() == true)))
-	{
-		bHMDActive = true;
-	}
-#endif // HMD_MODULE_INCLUDED
+
 	if( bHMDActive == false )
 	{
 		if ( (InputComponent) && (bInCarCameraActive == true ))
@@ -301,10 +292,7 @@ void ACarHustlePawn::BeginPlay()
 	InCarSpeed->SetVisibility(bInCarCameraActive);
 	InCarGear->SetVisibility(bInCarCameraActive);
 
-	// Enable in car view if HMD is attached
-#if HMD_MODULE_INCLUDED
-	bWantInCar = UHeadMountedDisplayFunctionLibrary::IsHeadMountedDisplayEnabled();
-#endif // HMD_MODULE_INCLUDED
+
 
 	EnableIncarView(bWantInCar);
 	// Start an engine sound playing
@@ -313,14 +301,7 @@ void ACarHustlePawn::BeginPlay()
 
 void ACarHustlePawn::OnResetVR()
 {
-#if HMD_MODULE_INCLUDED
-	if (GEngine->XRSystem.IsValid())
-	{
-		GEngine->XRSystem->ResetOrientationAndPosition();
-		InternalCamera->SetRelativeLocation(InternalCameraOrigin);
-		GetController()->SetControlRotation(FRotator());
-	}
-#endif // HMD_MODULE_INCLUDED
+
 }
 
 void ACarHustlePawn::UpdateHUDStrings()
